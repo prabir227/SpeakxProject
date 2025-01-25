@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package anagramService;
+
+// The request message containing the title.
+message AnagramRequest {
+  string title = 1;
+}
+
+// Message representing a block in the JSON structure.
+message Block {
+  string text = 1;
+  bool showInOption = 2;
+  bool isAnswer = 3;
+}
+
+// The main structure representing each anagram entry.
+message Anagram {
+  string id = 1; // Corresponding to _id.$oid
+  string type = 2;
+  string anagramType = 3;
+  repeated Block blocks = 4;
+  string siblingId = 5; // Corresponding to siblingId.$oid
+  string solution = 6;
+  string title = 7;
+}
+
+// The response message containing all matching anagrams.
+message AnagramResponse {
+  repeated Anagram anagrams = 1;
+}
+
+// The gRPC service definition.
+service AnagramService {
+  // RPC to get anagrams based on the title.
+  rpc GetAnagramsByTitle (AnagramRequest) returns (AnagramResponse);
+}
