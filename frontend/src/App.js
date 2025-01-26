@@ -9,15 +9,15 @@ const App = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const maxPageButtons = 5; // Maximum number of pagination buttons to display
+  const maxPageButtons = 5;
 
-  // Create gRPC client
-  const client = new AnagramServiceClient("http://localhost:8080"); // Update with the proxy URL
+  
+  const client = new AnagramServiceClient("http://13.202.8.121:8080");
 
-  // Function to fetch data via gRPC
+  
   const fetchData = () => {
     const request = new AnagramRequest();
-    request.setTitle(inputValue); // Set the title in the request
+    request.setTitle(inputValue); 
 
     client.getAnagramsByTitle(request, {}, (err, response) => {
       if (err) {
@@ -26,27 +26,26 @@ const App = () => {
         return;
       }
 
-      // Parse the response
-      const data = response.toObject(); // Convert response to a JavaScript object
-      setJsonData(data.anagramsList || []); // Set the anagrams data in state
-      setCurrentPage(1); // Reset to the first page on new search
+      
+      const data = response.toObject();
+      setJsonData(data.anagramsList || []); 
+      setCurrentPage(1); 
     });
   };
 
-  // Calculate the items to display on the current page
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = jsonData.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Handle page change
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  // Calculate total pages
+
   const totalPages = Math.ceil(jsonData.length / itemsPerPage);
 
-  // Calculate the range of pages to display
+
   const startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
   const endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
   const displayedPages = Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);

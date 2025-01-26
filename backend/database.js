@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const MONGO_URI = 'mongodb://localhost:27017';
+const MONGO_URI = 'mongodb+srv://prabirghosh:prabir227@cluster0.e8hzg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const DB_NAME = 'questions';
 const COLLECTION_NAME = 'allQuestions';
 
