@@ -13,19 +13,10 @@ async function getAnagramsByTitle(title) {
     const db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
 
-    const results = await collection.find({ title: title }).toArray();
+    const results = await collection.find({ title: {$regex: title, $options:"i"}}).toArray();
 
     return results?.map((doc) => ({
-        id: doc._id?.toString() || '',
-        type: doc.type || '',
-        anagramType: doc.anagramType || '',
-        blocks: Array.isArray(doc.blocks) ? doc.blocks.map((block) => ({
-          text: block.text || '',
-          showInOption: block.showInOption || false,
-          isAnswer: block.isAnswer || false,
-        })) : [],
-        siblingId: doc.siblingId?.$oid || '',
-        solution: doc.solution || '',
+        type: doc.type || '',        
         title: doc.title || '',
       }));
   } catch (error) {
