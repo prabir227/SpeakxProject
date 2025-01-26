@@ -29,5 +29,34 @@
 
 }
 .serverdata{
-    text-align: center;
+    justify-self: center;
+    border-radius: 10px;
+    border: 1px solid white;
+    width : 50%;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 5px;
+}
+.serverdata p{
+    margin: 5px;
+}
+.colorpurple{
+    color: #6f1a9a;
+    font-size: large;
+}
+.pagebuttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination{
+    justify-self: center;
+    padding: 10px;
+}
+button.page-button {
+    margin: 10px;
+    border-radius: 50px;
+    border: none;
+    padding: 5px 10px;
+    
 }
