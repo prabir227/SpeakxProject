@@ -12,7 +12,7 @@ const App = () => {
   const maxPageButtons = 5;
 
   
-  const client = new AnagramServiceClient("http://13.202.8.121:8080");
+  const client = new AnagramServiceClient("http://localhost:8080");
 
   
   const fetchData = () => {
